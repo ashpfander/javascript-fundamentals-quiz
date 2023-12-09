@@ -1,35 +1,56 @@
 // Traverse the DOM to select certain areas in HTML
 var quizBegin = document.querySelector(".intro");
 var startButton = document.querySelector(".start-button");
-var questions = document.querySelector(".quiz-questions");
+var timer = document.querySelector(".timer");
+var quizQuestions = document.querySelector(".quiz-questions");
 var addInitials = document.querySelector(".end-quiz");
 var highscoreSubmit = document.querySelector(".add-initials-button");
 
 // Create questions in arrays
-// question1: Who invented Javascript?
-    // a: Chris Beard
-    // b: Guido van Rossum
-    // c: Brendan Eich
-    // d: Larry Page
-        // Correct answer: C
+var questions = [
+    {
+        question: "Who invented Javascript?",
+        options: ["Chris Beard", "Guido van Rossum", "Brendan Eich", "Larry Page"],
+        answer: "Brendan Eich"
+    },
+    {
+        question: "What is a primitive data type?",
+        options: ["Number", "String", "Boolean", "All of the above"],
+        answer: "All of the above"
+    },
+    {
+        question: "How can you refer to a global object?",
+        options: ["this", "that", "there", "those"],
+        answer: "this"
+    },
+    {
+        question: "How can you declare a variable?",
+        options: ["var", "let", "const", "All of the above"],
+        answer: "All of the above"
+    }
+  ];
 
-// question2: What is a primitive data type?
-    // a: Number
-    // b: String
-    // c: Boolean
-    // d: All of the above
-        // Correct answer: D
+// Create function for beginning of quiz
+function startQuiz() {
 
-// question3: How can you refer to a global object?
-    // a: this
-    // b: that
-    // c: there
-    // d: those
-        // Correct answer: A
+}
 
-// question4: How can you declare a variable?
-    // a: var
-    // b: let
-    // c: const
-    // d: All of the above
-        // Correct answer: D
+// Create function for displaying questions
+function displayQuestions() {
+
+}
+
+// Create function for timer
+function timer() {
+
+}
+
+// Create function for entering initials for highscore
+function enterHighscore() {
+
+}
+
+// Create function for displaying highscores
+function showHighscores() {
+
+}
