@@ -4,33 +4,28 @@
     <title>Javascript Fundamentals Quiz</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Link to the CSS stylesheet -->
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css"/>
   </head>
 
   <body>
+    <!-- Header area houses the view highscores link and timer -->
     <header>
       <a href="#view-highscores">View Highscores</a>
-      <p class="timer"></p>
+      <p class="timer">Time Left: </p>
     </header>
 
     <main class="container">
-      <section class="intro">
-      </section>
-      <button class="start-button">
-      </button>
-
-      <section class="quiz-questions">
-      </section>
-
-      <section class="end-quiz">
-      </section>
-      <button class="add-initials-button">
-      </button>
-
-      <section id="view-highscores" class="view-highscores">
+      <!-- Main section holds where the questions will pop up -->
+      <!-- It starts out with the introduction and a button to start the quiz -->
+      <section class="quiz-area">
+        <h1 class="title">Javascript Quiz</h1>
+        <p class="questions-text">New to learning Javascript? Test your knowledge here!</p>
+        <button class="button">Start Quiz</button>
       </section>
     </main>
 
+    <!-- Link to the javascript file just before the closing body tag -->
     <script src="assets/js/script.js"></script>
   </body>
 </html>

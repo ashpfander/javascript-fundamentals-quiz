@@ -1,0 +1,69 @@
+/* Create universal properties for entire page */
+* {
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: lightslategrey;
+}
+
+/* Stylize the contents within the header */
+header {
+    color: white;
+    display: flex;
+    align-items: center; /* Center items so that they are on the same line */
+    justify-content: space-between; /* Space-between so first content is on the left and second content is on the right */
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+/* Since header has a link, stylize the text */
+header a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Add a color upon hovering the link */
+header a:hover {
+    color: lightsteelblue;
+}
+
+/* Create a box where the information goes */
+section {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    width: 50%;
+    height: 350px;
+}
+
+/* Text was having the same background as the slate grey, made it to match the section area */
+section h1,
+section p {
+    background-color: white;
+    color: black;
+}
+
+/* Positions the box on the page to be centered both vertically and horizontally */
+.container {
+    max-width: 100%;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Stylize any button the appears on the page */
+.button {
+    background-color: cadetblue;
+    color: white;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* Add a darker color upon hovering the button */
+.button:hover {
+    background-color: darkcyan;
+}
