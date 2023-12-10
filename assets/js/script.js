@@ -2,7 +2,6 @@
 var timer = document.getElementsByClassName("timer");
 var quizArea = document.getElementsByClassName("quiz-area");
 var title = document.getElementsByClassName("title");
-var questionsText = document.getElementsByClassName("questions-text");
 var button = document.getElementsByClassName("button");
 var startButton = document.getElementById("start-button");
 
@@ -36,12 +35,20 @@ function startQuiz() {
     startButton.addEventListener("click", function() {
         quizArea[0].innerHTML = ""; // quizArea[0] lets it know to clear the content (children) within the parent (quizArea)
         displayQuestions();
+        // timer();
       });
 }
 
 // Create function for displaying questions
 function displayQuestions() {
+    var currentQuestion = 0;
 
+    quizArea[0].textContent = questions[currentQuestion].question;
+
+    for (var i = 0; i < questions[currentQuestion].options.length; i++) {
+        var optionButton = document.querySelectorAll("#option");
+        optionButton.textContent = questions[currentQuestion].options;
+    }
 }
 
 // Create function for timer

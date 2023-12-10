@@ -43,6 +43,10 @@ section p {
     color: black;
 }
 
+#option {
+    display: none;
+}
+
 /* Positions the box on the page to be centered both vertically and horizontally */
 .container {
     max-width: 100%;
