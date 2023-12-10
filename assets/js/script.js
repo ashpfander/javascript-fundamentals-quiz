@@ -1,8 +1,8 @@
 // Traverse the DOM to select certain areas in HTML
 var timer = document.getElementsByClassName("timer");
 var quizArea = document.getElementsByClassName("quiz-area");
-var title = document.getElementsByClassName("title");
 var startButton = document.getElementById("start-button");
+var response = document.querySelector(".response");
 
 // Create questions in arrays
 var questions = [
@@ -38,9 +38,10 @@ function startQuiz() {
       });
 }
 
+var currentQuestion = 0;
+
 // Function for displaying the questions and answers
 function displayQuestions() {
-    var currentQuestion = 0;
   
     // Create the question element
     var questionElement = document.createElement("h1");
@@ -58,13 +59,35 @@ function displayQuestions() {
       button.className = "button";
       button.textContent = option;
       optionButtons.appendChild(button);
+
+        // Create click event for users selection
+        button.addEventListener("click", function() {
+        if (questions[currentQuestion].options.indexOf(option) === questions[currentQuestion].answer) {
+            response.textContent = "Correct!";
+            quizArea[0].appendChild(response);
+          } else {
+            response.textContent = "Wrong!";
+            quizArea[0].appendChild(response);
+        }
+
+        // set a timer to switch to the next question after user selects an option
+        setTimeout(() => {
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+            quizArea[0].innerHTML = "";
+            displayQuestions();
+        } else {
+            enterHighscore();
+        }
+        }, 2000);
+    });
     });
 
     // Make the buttons visible and stack centered
     optionButtons.style.display = "flex";
     optionButtons.style.alignItems = "center";
     optionButtons.style.flexDirection = "column";
-  }
+}
 
 // Create function for timer
 function timer() {
