@@ -2,7 +2,6 @@
 var timer = document.getElementsByClassName("timer");
 var quizArea = document.getElementsByClassName("quiz-area");
 var title = document.getElementsByClassName("title");
-var button = document.getElementsByClassName("button");
 var startButton = document.getElementById("start-button");
 
 // Create questions in arrays
@@ -39,17 +38,33 @@ function startQuiz() {
       });
 }
 
-// Create function for displaying questions
+// Function for displaying the questions and answers
 function displayQuestions() {
     var currentQuestion = 0;
+  
+    // Create the question element
+    var questionElement = document.createElement("h1");
+    questionElement.textContent = questions[currentQuestion].question;
+    quizArea[0].appendChild(questionElement);
+  
+    // Create the option buttons
+    var optionButtons = document.createElement("div");
+    optionButtons.className = "all-options";
+    quizArea[0].appendChild(optionButtons);
+  
+    // Add the options buttons to the question area
+    questions[currentQuestion].options.forEach((option) => {
+      var button = document.createElement("button");
+      button.className = "button";
+      button.textContent = option;
+      optionButtons.appendChild(button);
+    });
 
-    quizArea[0].textContent = questions[currentQuestion].question;
-
-    for (var i = 0; i < questions[currentQuestion].options.length; i++) {
-        var optionButton = document.querySelectorAll("#option");
-        optionButton.textContent = questions[currentQuestion].options;
-    }
-}
+    // Make the buttons visible and stack centered
+    optionButtons.style.display = "flex";
+    optionButtons.style.alignItems = "center";
+    optionButtons.style.flexDirection = "column";
+  }
 
 // Create function for timer
 function timer() {

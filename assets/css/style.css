@@ -33,7 +33,7 @@ section {
     padding: 1.5rem;
     text-align: center;
     width: 50%;
-    height: 350px;
+    height: 400px;
 }
 
 /* Text was having the same background as the slate grey, made it to match the section area */
@@ -43,21 +43,8 @@ section p {
     color: black;
 }
 
-#option {
-    display: none;
-}
-
-/* Positions the box on the page to be centered both vertically and horizontally */
-.container {
-    max-width: 100%;
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 /* Stylize any button the appears on the page */
-.button {
+button {
     background-color: cadetblue;
     color: white;
     padding: 0.8rem;
@@ -68,6 +55,25 @@ section p {
 }
 
 /* Add a darker color upon hovering the button */
-.button:hover {
+button:hover {
     background-color: darkcyan;
+}
+
+.all-options {
+    background-color: white;
+    display: none;
+}
+
+.button {
+    margin: 0.3rem;
+    width: 300px;
+}
+
+/* Positions the box on the page to be centered both vertically and horizontally */
+.container {
+    max-width: 100%;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
