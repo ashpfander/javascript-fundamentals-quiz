@@ -1,9 +1,10 @@
 // Traverse the DOM to select certain areas in HTML
-var timer = document.querySelector(".timer");
-var quizArea = document.querySelector(".quiz-area");
-var title = document.querySelector(".title");
-var questionsText = document.querySelector(".questions-text");
-var button = document.querySelector(".button");
+var timer = document.getElementsByClassName("timer");
+var quizArea = document.getElementsByClassName("quiz-area");
+var title = document.getElementsByClassName("title");
+var questionsText = document.getElementsByClassName("questions-text");
+var button = document.getElementsByClassName("button");
+var startButton = document.getElementById("start-button");
 
 // Create questions in arrays
 var questions = [
@@ -30,8 +31,12 @@ var questions = [
   ];
 
 // Create function for beginning of quiz
+// Clears previous content and generates first question
 function startQuiz() {
-
+    startButton.addEventListener("click", function() {
+        quizArea[0].innerHTML = ""; // quizArea[0] lets it know to clear the content (children) within the parent (quizArea)
+        displayQuestions();
+      });
 }
 
 // Create function for displaying questions
@@ -53,3 +58,6 @@ function enterHighscore() {
 function showHighscores() {
 
 }
+
+// Initiates the first step in all of the functions
+startQuiz();
