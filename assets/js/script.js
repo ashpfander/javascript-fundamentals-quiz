@@ -68,7 +68,7 @@ function displayQuestions() {
           } else {
             response.textContent = "Wrong!";
             quizArea[0].appendChild(response);
-            secondsLeft -= 25;
+            secondsLeft -= 20;
         }
 
         // Set a timer to switch to the next question after user selects an option
@@ -78,9 +78,10 @@ function displayQuestions() {
             quizArea[0].innerHTML = "";
             displayQuestions();
         } else {
+            quizArea[0].innerHTML = "";
             enterHighscore();
         }
-        }, 2000);
+        }, 1500);
     });
     });
 
@@ -101,15 +102,43 @@ function timer() {
         if(secondsLeft === 0 || currentQuestion === questions.length) {
             // Stops execution of action at set interval
             clearInterval(timerInterval);
-            // Calls function to go to enter highscore
-            enterHighscore();
         }
     }, 1000);
 }
 
+// Create element variables for h1 tag and p tag
+var titleElement = document.querySelector(".title");
+var textElement = document.querySelector(".body-text");
+
 // Create function for entering initials for highscore
 function enterHighscore() {
 
+    // Add a finished message when the function starts
+    titleElement.textContent = "Finished!";
+    quizArea[0].appendChild(titleElement);
+
+    // Add a message of the final score when the function starts
+    textElement.textContent = "Your final score is " + secondsLeft + ". Please enter your initials to track your scores.";
+    quizArea[0].appendChild(textElement);
+
+    // Add area to enter initials
+    var enterInitials = document.createElement("input");
+    quizArea[0].appendChild(enterInitials);
+    enterInitials.style.backgroundColor = "white";
+
+    // Add a submit button to submit initials and score
+    var button = document.createElement("button");
+    button.textContent = "Submit";
+    quizArea[0].appendChild(button);
+    button.style.marginLeft = "10px";
+
+    // Add event listener to the submit button to store the initials and score to local storage
+    // Clears previous information and goes to next function: showHighscores
+    button.addEventListener("click", function() {
+        localStorage.setItem("initials", secondsLeft + " - " + enterInitials.value);
+        quizArea[0].innerHTML = "";
+        showHighscores();
+    });
 }
 
 // Create function for displaying highscores
