@@ -1,5 +1,5 @@
 // Traverse the DOM to select certain areas in HTML
-var timer = document.getElementsByClassName("timer");
+var timerEl = document.getElementsByClassName("timer");
 var quizArea = document.getElementsByClassName("quiz-area");
 var startButton = document.getElementById("start-button");
 var response = document.querySelector(".response");
@@ -34,7 +34,7 @@ function startQuiz() {
     startButton.addEventListener("click", function() {
         quizArea[0].innerHTML = ""; // quizArea[0] lets it know to clear the content (children) within the parent (quizArea)
         displayQuestions();
-        // timer();
+        timer();
       });
 }
 
@@ -68,9 +68,10 @@ function displayQuestions() {
           } else {
             response.textContent = "Wrong!";
             quizArea[0].appendChild(response);
+            secondsLeft -= 25;
         }
 
-        // set a timer to switch to the next question after user selects an option
+        // Set a timer to switch to the next question after user selects an option
         setTimeout(() => {
         currentQuestion++;
         if (currentQuestion < questions.length) {
@@ -89,9 +90,21 @@ function displayQuestions() {
     optionButtons.style.flexDirection = "column";
 }
 
+var secondsLeft = 100;
+
 // Create function for timer
 function timer() {
-
+    var timerInterval = setInterval(function() {
+        secondsLeft--;
+        timerEl[0].textContent = "Time left: " + secondsLeft;
+    
+        if(secondsLeft === 0 || currentQuestion === questions.length) {
+            // Stops execution of action at set interval
+            clearInterval(timerInterval);
+            // Calls function to go to enter highscore
+            enterHighscore();
+        }
+    }, 1000);
 }
 
 // Create function for entering initials for highscore
