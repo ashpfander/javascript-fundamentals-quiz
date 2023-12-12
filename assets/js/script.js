@@ -3,6 +3,8 @@ var timerEl = document.getElementsByClassName("timer");
 var quizArea = document.getElementsByClassName("quiz-area");
 var startButton = document.getElementById("start-button");
 var response = document.querySelector(".response");
+var titleElement = document.querySelector(".title");
+var textElement = document.querySelector(".body-text");
 
 // Create questions in arrays
 var questions = [
@@ -29,8 +31,17 @@ var questions = [
   ];
 
 // Create function for beginning of quiz
-// Clears previous content and generates first question
 function startQuiz() {
+    titleElement.textContent = "Javascript Quiz";
+    quizArea[0].appendChild(titleElement);
+
+    textElement.textContent = "New to learning Javascript? Test your knowledge here!";
+    quizArea[0].appendChild(textElement);
+
+    startButton.textContent = "Start Quiz";
+    quizArea[0].appendChild(startButton);
+
+    // Clears previous content and generates first question
     startButton.addEventListener("click", function() {
         quizArea[0].innerHTML = ""; // quizArea[0] lets it know to clear the content (children) within the parent (quizArea)
         displayQuestions();
@@ -106,10 +117,6 @@ function timer() {
     }, 1000);
 }
 
-// Create element variables for h1 tag and p tag
-var titleElement = document.querySelector(".title");
-var textElement = document.querySelector(".body-text");
-
 // Create function for entering initials for highscore
 function enterHighscore() {
 
@@ -141,9 +148,45 @@ function enterHighscore() {
     });
 }
 
+// Resets the quiz if user selects play again after submitting highscore
+function resetQuiz() {
+    currentQuestion = 0;
+    secondsLeft = 100;
+    startQuiz();
+}
+
 // Create function for displaying highscores
 function showHighscores() {
 
+    // Create title of "Highscores:"
+    titleElement.textContent = "Highscores:";
+    quizArea[0].appendChild(titleElement);
+
+    // Enters all previous highscores from local storage
+    textElement.textContent = localStorage.getItem("initials");
+    quizArea[0].appendChild(textElement);
+
+    // Create a button to clear the current highscores
+    var clearButton = document.createElement("button");
+    clearButton.textContent = "Clear";
+    quizArea[0].appendChild(clearButton);
+    clearButton.style.marginRight = "10px";
+
+    // Add event listener for when user clicks clear button, it clears current highscores
+    clearButton.addEventListener("click", function() {
+        textElement.innerHTML = "";
+    });
+
+    // Create a play again button if the user wants to play again
+    var playAgainButton = document.createElement("button");
+    playAgainButton.textContent = "Play Again";
+    quizArea[0].appendChild(playAgainButton);
+
+    // Create event listener for when user clicks play again and takes them back to beginning of the quiz
+    playAgainButton.addEventListener("click", function() {
+        quizArea[0].innerHTML = "";
+        resetQuiz();
+    });
 }
 
 // Initiates the first step in all of the functions
