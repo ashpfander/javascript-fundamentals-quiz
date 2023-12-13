@@ -140,9 +140,12 @@ function enterHighscore() {
     button.style.marginLeft = "10px";
 
     // Add event listener to the submit button to store the initials and score to local storage
-    // Clears previous information and goes to next function: showHighscores
     button.addEventListener("click", function() {
-        localStorage.setItem("highscore", secondsLeft + " - " + enterInitials.value);
+        // Parse previous highscores from local storage and add new one to array object
+        var highScores = JSON.parse(localStorage.getItem("highscore")) || [];
+        highScores.push(secondsLeft + " - " + enterInitials.value);
+        localStorage.setItem("highscore", JSON.stringify(highScores));
+        // Clears previous information and goes to next function: showHighscores
         quizArea[0].innerHTML = "";
         showHighscores();
     });
@@ -171,8 +174,14 @@ function showHighscores() {
     quizArea[0].appendChild(titleElement);
 
     // Enters all previous highscores from local storage
-    textElement.textContent = localStorage.getItem("highscore");
-    quizArea[0].appendChild(textElement);
+    var highScores = JSON.parse(localStorage.getItem("highscore")) || [];
+
+    // Creates new area for each highscore input
+    for (var i = 0; i < highScores.length; i++) {
+        var highscoreElement = document.createElement("p");
+        highscoreElement.textContent = highScores[i];
+        quizArea[0].appendChild(highscoreElement);
+    }
 
     // Create a button to clear the current highscores
     var clearButton = document.createElement("button");
@@ -183,7 +192,11 @@ function showHighscores() {
     // Add event listener for when user clicks clear button, it clears current highscores
     clearButton.addEventListener("click", function() {
         localStorage.clear();
-        textElement.innerHTML = "";
+        // Clears only the <p> areas and not everything on the page
+        var allHighscores = quizArea[0].querySelectorAll("p");
+        allHighscores.forEach(function(element) {
+        element.remove();
+        });
     });
 
     // Create a play again button if the user wants to play again
