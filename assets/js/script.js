@@ -142,7 +142,7 @@ function enterHighscore() {
     // Add event listener to the submit button to store the initials and score to local storage
     // Clears previous information and goes to next function: showHighscores
     button.addEventListener("click", function() {
-        localStorage.setItem("initials", secondsLeft + " - " + enterInitials.value);
+        localStorage.setItem("highscore", secondsLeft + " - " + enterInitials.value);
         quizArea[0].innerHTML = "";
         showHighscores();
     });
@@ -155,6 +155,14 @@ function resetQuiz() {
     startQuiz();
 }
 
+// Create link to showHighscores function through HTML in upper left link
+var viewHighscores = document.getElementById("view-highscores");
+viewHighscores.addEventListener("click", function() {
+    quizArea[0].innerHTML = "";
+    showHighscores();
+}
+);
+
 // Create function for displaying highscores
 function showHighscores() {
 
@@ -163,7 +171,7 @@ function showHighscores() {
     quizArea[0].appendChild(titleElement);
 
     // Enters all previous highscores from local storage
-    textElement.textContent = localStorage.getItem("initials");
+    textElement.textContent = localStorage.getItem("highscore");
     quizArea[0].appendChild(textElement);
 
     // Create a button to clear the current highscores
@@ -174,6 +182,7 @@ function showHighscores() {
 
     // Add event listener for when user clicks clear button, it clears current highscores
     clearButton.addEventListener("click", function() {
+        localStorage.clear();
         textElement.innerHTML = "";
     });
 

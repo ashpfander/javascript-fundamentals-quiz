@@ -24,6 +24,7 @@ header a {
 /* Add a color upon hovering the link */
 header a:hover {
     color: lightsteelblue;
+    cursor: default;
 }
 
 /* Create a box where the information goes */
