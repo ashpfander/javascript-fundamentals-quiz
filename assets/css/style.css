@@ -78,3 +78,16 @@ button:hover {
     align-items: center;
     justify-content: center;
 }
+
+/* creates the breakpoint for screen sizes smaller than 768px to make it responsive */
+@media screen and (max-width: 1024px) {
+    section {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    section {
+        width: 90%;
+    }
+}
